@@ -31,7 +31,7 @@ int main(void) {
     printf("waiting for the child process...\n");
 
     int child_status;
-    wait(&child_status);
+    waitpid(pid, &child_status, 0);
 
     printf("child status: %d\n", child_status);
     exit(0);
