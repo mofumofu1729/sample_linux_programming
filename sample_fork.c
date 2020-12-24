@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -27,12 +28,12 @@ int main(void) {
     /* 親プロセス */
     printf("here is parent process; pid is %d\n", pid);
 
-    int i;
-    for (i=0; i<10; i++) {
-      printf("parent(%d): %d\n", pid, i);
-      sleep(1);
-    }
+    printf("waiting for the child process...\n");
 
+    int child_status;
+    wait(&child_status);
+
+    printf("child status: %d\n", child_status);
     exit(0);
   }
 
